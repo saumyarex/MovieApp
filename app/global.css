@@ -1,0 +1,8 @@
+/* Import Tailwind's generated CSS if not using Tailwind's CLI or PostCSS
+@import "tailwindcss/base.css";
+@import "tailwindcss/components.css";
+@import "tailwindcss/utilities.css"; */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
