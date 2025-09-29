@@ -1,14 +1,23 @@
 import { icons } from "@/constants/icons";
 import React from "react";
-import { Image, TextInput, View } from "react-native";
+import { Image, TextInput, TouchableOpacity, View } from "react-native";
 
 interface Props {
   placeholder: string;
-  onPress: () => void;
+  value?: string;
+  onPress?: () => void;
+  onChange?: (text: string) => void;
+  editable?: boolean;
 }
 
-const SearchBar = ({ onPress, placeholder }: Props) => {
-  return (
+const SearchBar = ({
+  onPress,
+  placeholder,
+  onChange,
+  value,
+  editable = true,
+}: Props) => {
+  const Content = (
     <View className="flex-row justify-start items-center w-full">
       <Image
         source={icons.search}
@@ -19,12 +28,19 @@ const SearchBar = ({ onPress, placeholder }: Props) => {
       <TextInput
         placeholder={placeholder}
         placeholderTextColor="#A8B5DB"
-        className="text-white ml-3 flex-1 "
-        value=""
-        onPress={onPress}
-        onChange={() => {}}
+        className="text-white ml-3 "
+        value={value ?? ""}
+        onChangeText={onChange}
+        editable={editable}
+        showSoftInputOnFocus={editable} // prevents keyboard if not editable
       />
     </View>
+  );
+
+  return editable ? (
+    Content
+  ) : (
+    <TouchableOpacity onPress={onPress}>{Content}</TouchableOpacity>
   );
 };
 
