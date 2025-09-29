@@ -39,6 +39,7 @@ export default function Index() {
           <SearchBar
             onPress={() => router.push("/search")}
             placeholder="Search for a movie"
+            editable={false}
           />
         </View>
 
@@ -47,12 +48,12 @@ export default function Index() {
         ) : moviesError ? (
           <Text className="text-base font-bold text-red-600 mt-10 ml-5">
             {" "}
-            Error: fetching movies {moviesError.message}{" "}
+            Error: {moviesError.message}{" "}
           </Text>
         ) : (
           <>
-            <Text className="text-lg font-bold text-white mt-5 mb-3">
-              Latest Movies:{" "}
+            <Text className="text-xl font-bold text-white mt-5 mb-3">
+              Latest Movies{" "}
             </Text>
             <FlatList
               data={movies}
